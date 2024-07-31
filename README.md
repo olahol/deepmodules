@@ -14,23 +14,10 @@ simple interfaces. I use the term deep to describe such modules.
 
 </div>
 
-A blunt tool that analyze the "depth" (lines of code per export) of Go
+A tool for analyzing module "depth" (lines of code per export) of Go
 packages. Identify opportunities to refactor shallow modules, optimize
 your package architecture, and build a codebase that stands the test
-of time.
-
-## Introduction
-
-Deep modules are a concept in software engineering and system design
-that refers to high-quality, reusable components with simple interfaces
-but complex internal implementations.
-
-This approach to module design aims to manage complexity effectively
-by encapsulating intricate logic and data structures within a clean,
-easy-to-use exterior.
-
-Deep modules effectively hide their internal workings, exposing only
-what's necessary for other parts of the system to interact with them.
+of time!
 
 ## Installation
 
@@ -38,19 +25,21 @@ what's necessary for other parts of the system to interact with them.
 go install github.com/olahol/deepmodules@latest
 ```
 
-## Usage
+## Example
 
 ```bash
-deepmodules /path/to/go/repo
+$ deepmodules /path/to/esbuild/repo
 
-┌────────────────┬───────────────────────────────────┬─────┬───────┬──────┐
-│PACKAGE         │DIR                                │LINES│EXPORTS│DEPTH │
-├────────────────┼───────────────────────────────────┼─────┼───────┼──────┤
-│create          │pkg/cmd/repo/create                │1279 │3      │426.33│
-│create          │pkg/cmd/release/create             │839  │2      │419.50│
-│label           │pkg/cmd/label                      │893  │3      │297.67│
-│status          │pkg/cmd/pr/status                  │529  │2      │264.50│
-│set             │pkg/cmd/variable/set               │473  │2      │236.50│
-│link            │pkg/cmd/project/link               │233  │1      │233.00│
-│view            │pkg/cmd/pr/view                    │466  │2      │233.00│
+┌───────────┬────────────────────┬─────┬───────┬───────┐
+│PACKAGE    │DIR                 │LINES│EXPORTS│DEPTH  │
+├───────────┼────────────────────┼─────┼───────┼───────┤
+│css_parser │internal/css_parser │9256 │8      │1157.00│
+│js_parser  │internal/js_parser  │25274│23     │1098.87│
+│js_printer │internal/js_printer │4923 │6      │820.50 │
+│linker     │internal/linker     │7302 │13     │561.69 │
+│css_printer│internal/css_printer│1141 │3      │380.33 │
+│cli        │pkg/cli             │1779 │5      │355.80 │
+│bundler    │internal/bundler    │3331 │11     │302.82 │
+│runtime    │internal/runtime    │604  │2      │302.00 │
+│resolver   │internal/resolver   │5503 │31     │177.52 │
 ```
